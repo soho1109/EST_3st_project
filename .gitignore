@@ -54,3 +54,7 @@ next-env.d.ts
 .specify/
 .github/agents/
 .github/prompts/
+
+roles.sql
+schema.sql
+data.sql
