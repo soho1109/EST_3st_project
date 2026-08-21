@@ -28,21 +28,22 @@ export default function SignupCompletePage() {
       completedAt > 0 &&
       Date.now() - completedAt <= SIGNUP_COMPLETE_ACCESS_TIME;
 
-    // 정상적인 회원가입 직후 접근 세션 확인
-    if (hasValidSignupCompletion) {
+    if (!hasValidSignupCompletion && isAuthLoading) {
+      return;
+    }
+
+    const accessCheckTimer = window.setTimeout(() => {
+      if (!hasValidSignupCompletion) {
+        sessionStorage.removeItem(SIGNUP_COMPLETED_KEY);
+        setModalMode(isAuthenticated ? "alreadyLoggedIn" : "error");
+      }
+
       setIsAccessChecked(true);
-      return;
-    }
+    }, 0);
 
-    if (isAuthLoading) {
-      return;
-    }
-
-    // 가입 세션 만료
-    sessionStorage.removeItem(SIGNUP_COMPLETED_KEY);
-    setModalMode(isAccessChecked ? "alreadyLoggedIn" : "error");
-    setIsAccessChecked(true);
-    return;
+    return () => {
+      window.clearTimeout(accessCheckTimer);
+    };
   }, [isAccessChecked, isAuthenticated, isAuthLoading]);
 
   if (!isAccessChecked) {

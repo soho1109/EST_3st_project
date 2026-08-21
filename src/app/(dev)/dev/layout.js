@@ -1,3 +1,5 @@
+import { AuthProvider } from "@/components/AuthProvider";
+
 export default function DevLayout({ children }) {
-  return <>{children}</>;
+  return <AuthProvider>{children}</AuthProvider>;
 }

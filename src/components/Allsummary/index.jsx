@@ -7,7 +7,16 @@ import useAll from "./useAll";
 
 export default function AllSummary({ title, summaries = [], isBookmarkPage = false }) {
   //useAll.js 실행
-  const allSummary = useAll(summaries, isBookmarkPage);
+  const {
+    searchTerm,
+    setSearchTerm,
+    visibleSummaryCards,
+    hasMore,
+    sentinelRef,
+    handleBookmarkToggle,
+    isEmpty,
+    isSearchEmpty,
+  } = useAll(summaries, isBookmarkPage);
 
   return (
     <main className={styles["summary-page"]}>
@@ -23,8 +32,8 @@ export default function AllSummary({ title, summaries = [], isBookmarkPage = fal
             <input
               type="text"
               placeholder="주제 검색하기"
-              value={allSummary.searchTerm}
-              onChange={event => allSummary.setSearchTerm(event.target.value)}
+              value={searchTerm}
+              onChange={event => setSearchTerm(event.target.value)}
             />
 
             <span className={`material-symbols-outlined ${styles["search-icon"]}`} aria-hidden="true">
@@ -35,12 +44,12 @@ export default function AllSummary({ title, summaries = [], isBookmarkPage = fal
 
         {/* 현재 화면에 표시할 요약 카드 목록 */}
         <div className={styles["summary-content"]}>
-          {allSummary.isEmpty ? (
+          {isEmpty ? (
             <EmptyState message="현재 리스트가 없습니다." />
-          ) : allSummary.isSearchEmpty ? (
+          ) : isSearchEmpty ? (
             <EmptyState message="검색 결과가 없습니다." />
           ) : (
-            allSummary.visibleSummaryCards.map(summary => (
+            visibleSummaryCards.map(summary => (
               <SummaryItemCard
                 key={summary.id}
                 summaryId={summary.id}
@@ -51,15 +60,15 @@ export default function AllSummary({ title, summaries = [], isBookmarkPage = fal
                 createdAt={summary.created_at}
                 isPrivate={summary.is_locked}
                 isBookmarked={summary.isBookmarked ?? false}
-                onBookmarkToggle={allSummary.handleBookmarkToggle}
+                onBookmarkToggle={handleBookmarkToggle}
               />
             ))
           )}
         </div>
 
         {/* 다음 카드 묶음을 불러오기 위한 무한 스크롤 감지 지점 */}
-        {allSummary.hasMore && (
-          <div className={styles["scroll-sentinel"]} ref={allSummary.sentinelRef} aria-hidden="true" />
+        {hasMore && (
+          <div className={styles["scroll-sentinel"]} ref={sentinelRef} aria-hidden="true" />
         )}
       </section>
     </main>

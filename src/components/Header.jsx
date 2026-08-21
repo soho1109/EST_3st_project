@@ -49,13 +49,14 @@ export default function Header() {
   );
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isPreparingModalOpen, setIsPreparingModalOpen] = useState(false);
-  const [profileNickname, setProfileNickname] = useState("user name");
-  const [profileImageUrl, setProfileImageUrl] = useState("/images/main_profile.webp");
+  const [profile, setProfile] = useState(null);
+  const profileNickname = user ? profile?.nickname || "user name" : "user name";
+  const profileImageUrl = user
+    ? profile?.profileImageUrl || "/images/main_profile.webp"
+    : "/images/main_profile.webp";
 
   useEffect(() => {
     if (!user) {
-      setProfileNickname("user name");
-      setProfileImageUrl("/images/main_profile.webp");
       return undefined;
     }
 
@@ -73,8 +74,10 @@ export default function Header() {
         return;
       }
 
-      setProfileNickname(data.nickname || "user name");
-      setProfileImageUrl(data.profile_image_url || "/images/main_profile.webp");
+      setProfile({
+        nickname: data.nickname,
+        profileImageUrl: data.profile_image_url,
+      });
     }
 
     function handleProfileUpdated() {
