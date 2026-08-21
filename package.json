@@ -23,6 +23,23 @@
   "devDependencies": {
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
-    "supabase": "^2.113.0"
-  }
+    "supabase": "^2.115.0"
+  },
+  "description": "> AI로 기술 문서를 요약하고, 요약노트·학습노트·퀴즈를 통해 개발 학습을 돕는 웹 서비스입니다.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soho1109/EST_3st_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/soho1109/EST_3st_project/issues"
+  },
+  "homepage": "https://github.com/soho1109/EST_3st_project#readme"
 }
