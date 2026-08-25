@@ -50,8 +50,9 @@ export default function Header() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isPreparingModalOpen, setIsPreparingModalOpen] = useState(false);
   const [profile, setProfile] = useState(null);
-  const profileNickname = user ? profile?.nickname || "user name" : "user name";
-  const profileImageUrl = user
+  const isCurrentUserProfile = user && profile?.userId === user.id;
+  const profileNickname = isCurrentUserProfile ? profile.nickname || "user name" : "user name";
+  const profileImageUrl = isCurrentUserProfile
     ? profile?.profileImageUrl || "/images/main_profile.webp"
     : "/images/main_profile.webp";
 
@@ -68,13 +69,14 @@ export default function Header() {
         .from("profiles")
         .select("nickname, profile_image_url")
         .eq("id", user.id)
-        .single();
+        .maybeSingle();
 
-      if (!isCurrentRequest || error) {
+      if (!isCurrentRequest || error || !data) {
         return;
       }
 
       setProfile({
+        userId: user.id,
         nickname: data.nickname,
         profileImageUrl: data.profile_image_url,
       });
