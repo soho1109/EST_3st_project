@@ -1,0 +1,454 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/mixins" as mixin;
+@use "styles/abstracts/typography" as type;
+
+.signup-page {
+  min-height: 100vh;
+  padding: 72px 32px;
+  box-sizing: border-box;
+  background-color: color.$white-2;
+  color: color.$black;
+}
+
+.signup-content {
+  width: min(882px, 100%);
+  margin: 0 auto;
+}
+
+.title-area {
+  padding-bottom: 12px;
+  border-bottom: 2px solid color.$black;
+
+  h1 {
+    @include type.text-48-bold;
+  }
+}
+
+.signup-form {
+  margin-top: 36px;
+}
+
+.terms-section {
+  padding: 0;
+  border: 0;
+
+  legend {
+    @include type.text-24-semibold;
+
+    margin-bottom: 16px;
+
+    span {
+      color: color.$fda-orange;
+    }
+  }
+}
+
+.terms-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid color.$gray-light-2;
+  border-radius: 10px;
+  background-color: color.$white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.all-terms,
+.term-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  cursor: pointer;
+
+  input {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    accent-color: color.$fda-orange;
+  }
+}
+
+.all-terms {
+  strong {
+    @include type.text-18-semibold;
+
+    display: block;
+  }
+
+  small {
+    @include type.text-14-regular;
+
+    display: block;
+    margin-top: 6px;
+    color: color.$gray-medium-3;
+    line-height: 1.5;
+  }
+}
+
+.term-option {
+  @include type.text-18-medium;
+
+  align-items: center;
+}
+
+.terms-divider {
+  height: 1px;
+  background-color: color.$gray-light;
+}
+
+.fields-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: start;
+  gap: 48px;
+
+  > label {
+    @include type.text-24-semibold;
+
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+
+    span {
+      color: color.$fda-orange;
+    }
+  }
+}
+
+.field-control {
+  min-width: 0;
+
+  > input {
+    @include mixin.input-base;
+    @include type.text-18-medium;
+
+    height: 56px;
+    color: color.$black;
+
+    &::placeholder {
+      color: color.$gray-light;
+      opacity: 1;
+    }
+
+    &:focus {
+      border-color: color.$fda-orange;
+      outline: 0;
+    }
+
+    &[aria-invalid="true"] {
+      border-color: color.$fda-orange;
+    }
+  }
+
+  > p {
+    @include type.text-14-regular;
+
+    margin-top: 6px;
+    text-align: left;
+  }
+}
+
+.feedback-error {
+  color: color.$fda-orange;
+}
+
+.feedback-success {
+  color: #2e7d32;
+}
+
+.password-input {
+  @include mixin.input-base;
+
+  height: 56px;
+
+  input {
+    @include type.text-18-medium;
+
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: color.$black;
+
+    &::placeholder {
+      color: color.$gray-light;
+      opacity: 1;
+    }
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: color.$gray-medium;
+    cursor: pointer;
+  }
+
+  &:focus-within {
+    border-color: color.$fda-orange;
+  }
+
+  &:has(input[aria-invalid="true"]) {
+    border-color: color.$fda-orange;
+  }
+}
+.signup-error {
+  @include type.text-14-regular;
+
+  margin-top: 24px;
+  color: color.$fda-orange;
+  text-align: left;
+}
+.action-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 64px;
+}
+
+.signup-button {
+  @include mixin.button-base(color.$fda-orange, 100%);
+  @include type.text-24-semibold;
+
+  min-height: 56px;
+  border-radius: 50px;
+  color: color.$white;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.login-link {
+  @include type.text-24-semibold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  border: 2px solid color.$fda-navy;
+  border-radius: 50px;
+  color: color.$fda-navy;
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  .signup-page {
+    padding: 64px 32px;
+  }
+
+  .signup-content {
+    width: min(704px, 100%);
+  }
+
+  .title-area {
+    padding-bottom: 10px;
+
+    h1 {
+      @include type.text-36-bold;
+    }
+  }
+
+  .signup-form {
+    margin-top: 28px;
+  }
+
+  .terms-section {
+    legend {
+      @include type.text-20-semibold;
+
+      margin-bottom: 14px;
+    }
+  }
+
+  .terms-box {
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .all-terms,
+  .term-option {
+    gap: 12px;
+
+    input {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .all-terms {
+    strong {
+      @include type.text-16-semibold;
+    }
+
+    small {
+      margin-top: 4px;
+    }
+  }
+
+  .term-option {
+    @include type.text-16-medium;
+  }
+
+  .fields-section {
+    gap: 20px;
+    margin-top: 56px;
+  }
+
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+
+    > label {
+      @include type.text-20-semibold;
+
+      display: block;
+      min-height: 0;
+      padding-top: 0;
+    }
+  }
+
+  .action-area {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-page {
+    padding: 48px 20px 64px;
+  }
+
+  .title-area {
+    padding-bottom: 0;
+    border-bottom: 0;
+
+    h1 {
+      @include type.text-24-semibold;
+    }
+  }
+
+  .signup-form {
+    margin-top: 44px;
+  }
+
+  .terms-section {
+    legend {
+      @include type.text-16-semibold;
+
+      margin-bottom: 14px;
+    }
+  }
+
+  .terms-box {
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .all-terms,
+  .term-option {
+    gap: 12px;
+
+    input {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .all-terms {
+    strong {
+      @include type.text-14-semibold;
+    }
+
+    small {
+      @include type.text-14-regular;
+
+      font-size: 11px;
+    }
+  }
+
+  .term-option {
+    @include type.text-14-medium;
+
+    font-size: 12px;
+  }
+
+  .fields-section {
+    gap: 20px;
+    margin-top: 44px;
+  }
+
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+
+    > label {
+      @include type.text-14-semibold;
+
+      display: block;
+      min-height: 0;
+      padding-top: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .field-control {
+    > input {
+      @include type.text-14-medium;
+
+      height: 48px;
+      padding: 11px 16px;
+    }
+
+    > p {
+      font-size: 11px;
+      line-height: 1.4;
+    }
+  }
+
+  .password-input {
+    height: 48px;
+    padding: 11px 12px 11px 16px;
+
+    input {
+      @include type.text-14-medium;
+    }
+
+    button {
+      width: 28px;
+      height: 28px;
+
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .action-area {
+    gap: 16px;
+    margin-top: 44px;
+  }
+
+  .signup-button,
+  .login-link {
+    @include type.text-16-semibold;
+
+    min-height: 48px;
+  }
+}

@@ -1,0 +1,136 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.item-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 312px;
+  min-height: 229px;
+  padding: 16px 20px;
+
+  box-sizing: border-box;
+
+  background: color.$card-color;
+  border-radius: 15px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 10px rgba(250, 129, 47, 0.7);
+    cursor: pointer;
+  }
+}
+
+.card-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: inherit;
+  appearance: none;
+  cursor: pointer;
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  flex: 1;
+}
+
+.card-header,
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile-img {
+  border-radius: 50px;
+}
+.nickname {
+  @include typography.text-18-semibold;
+  color: color.$black;
+}
+
+.bookmark-btn {
+  position: relative;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+.bookmark-icon {
+  color: color.$gray-light-3;
+
+  &.is-active {
+    color: color.$fda-navy;
+  }
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title {
+  @include typography.text-20-semibold;
+
+  width: 100%;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: color.$black;
+
+  .item-card:hover & {
+    text-decoration: underline;
+  }
+}
+
+.card-desc {
+  @include typography.text-14-regular;
+
+  display: -webkit-box;
+  overflow: hidden;
+
+  color: color.$gray-medium-3;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.created-date {
+  @include typography.text-14-regular;
+  color: color.$gray-medium-3;
+}
+
+.lock-icon {
+  color: color.$fda-navy;
+}
+
+@media (max-width: 480px) {
+  .item-card {
+    width: 100%;
+  }
+}

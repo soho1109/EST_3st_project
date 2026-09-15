@@ -1,0 +1,35 @@
+.banner-dev-page {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.banner-preview {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.size-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.narrow-parent {
+  width: 100%;
+  max-width: 460px;
+}
+
+.medium-parent {
+  width: 100%;
+  max-width: 760px;
+}
+
+.wide-parent {
+  width: 100%;
+  max-width: 1200px;
+}

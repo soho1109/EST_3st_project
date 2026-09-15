@@ -1,0 +1,153 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(color.$black, 0.36);
+}
+
+.modal-container {
+  position: relative;
+
+  width: min(500px, 100%);
+  padding: 44px 46px 46px;
+
+  background: color.$white;
+  border-radius: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  color: color.$gray-medium-3;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    color: color.$black;
+    background: color.$white-2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid color.$fda-orange;
+    outline-offset: 2px;
+  }
+}
+
+.modal-title {
+  @include typography.text-20-semibold;
+
+  margin: 0 0 20px;
+  color: color.$black;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  @include typography.text-14-regular;
+
+  margin-bottom: 8px;
+  color: color.$gray-medium-3;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  height: 44px;
+  padding: 0 12px;
+
+  background: color.$card-color;
+  border-radius: 4px;
+
+  &:focus-within {
+    outline: 2px solid color.$fda-orange;
+    outline-offset: 1px;
+  }
+}
+
+.lock-icon {
+  color: color.$gray-light-3;
+  font-size: 20px;
+}
+
+.password-input {
+  @include typography.text-14-regular;
+
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+
+  color: color.$black;
+  background: transparent;
+  border: 0;
+  outline: 0;
+
+  &::placeholder {
+    color: color.$gray-light-3;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.password-form .error-message {
+  @include typography.text-14-regular;
+
+  margin: 8px 0 0;
+  padding-left: 0;
+  color: color.$fda-orange;
+}
+
+.submit-button {
+  @include typography.text-16-semibold;
+
+  height: 44px;
+  margin-top: 18px;
+
+  color: color.$white;
+  background: color.$fda-orange;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid color.$fda-navy;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

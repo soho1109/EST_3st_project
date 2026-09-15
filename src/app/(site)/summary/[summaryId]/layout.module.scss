@@ -1,0 +1,84 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.summary-detail {
+  min-height: 100vh;
+  padding: 60px 0;
+  background: color.$white-2;
+}
+
+.summary-container {
+  width: min(1320px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.summary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.topic-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 20px;
+  overflow: hidden;
+  border: 1px solid color.$fda-orange;
+  border-radius: 50px;
+
+  h1 {
+    @include typography.text-36-bold;
+
+    margin: 0;
+    line-height: 1;
+  }
+}
+
+.bookmark-button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  place-items: center;
+  color: color.$gray-light-3;
+  background: transparent;
+  border: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.summary-content {
+  height: 500px;
+  padding: 24px;
+  overflow: auto;
+  border: 1px solid color.$gray-light-2;
+  border-radius: 15px;
+}
+
+.summary-placeholder {
+  @include typography.text-14-regular;
+
+  margin: 0;
+  color: color.$gray-light-3;
+}
+
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .Ai-content {
+    font-size: 14px;
+  }
+}

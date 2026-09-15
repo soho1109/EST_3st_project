@@ -1,0 +1,310 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/mixins" as mixin;
+@use "styles/abstracts/typography" as type;
+
+.login-page {
+  min-height: 100vh;
+  background-color: color.$white-2;
+  color: color.$fda-navy;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px 32px;
+  box-sizing: border-box;
+}
+
+.brand-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 68px;
+}
+
+.brand-logo {
+  width: 419px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.brand-description {
+  @include type.text-20-bold;
+
+  margin-top: 8px;
+}
+
+.login-form {
+  width: min(644px, 100%);
+}
+
+.credential-row {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.input-section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field-group {
+  position: relative;
+}
+
+.input-box {
+  @include mixin.input-base;
+
+  height: 48px;
+
+  > span {
+    flex-shrink: 0;
+    color: color.$gray-medium;
+    font-size: 20px;
+  }
+
+  input {
+    @include type.text-16-medium;
+
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: color.$black;
+
+    &::placeholder {
+      color: color.$gray-medium;
+      opacity: 1;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &:focus-within {
+    border-color: color.$fda-orange;
+  }
+
+  &:has(input[aria-invalid="true"]) {
+    border-color: color.$fda-orange;
+  }
+}
+
+.form-error {
+  @include type.text-14-regular;
+
+  min-height: 21px;
+  margin-top: 6px;
+  color: color.$fda-orange;
+}
+
+.login-button {
+  @include mixin.button-base(color.$fda-orange, 87px);
+  @include type.text-16-semibold;
+
+  min-height: 112px;
+  color: color.$black;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.session-guide {
+  @include type.text-14-regular;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  color: color.$gray-medium-3;
+
+  :global(.material-symbols-outlined) {
+    display: block;
+    font-size: 16px;
+    line-height: 1;
+    transform: translateY(1px);
+  }
+}
+
+.social-divider {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 40px;
+  color: color.$gray-medium-3;
+
+  > span {
+    flex: 1;
+    height: 1px;
+    background-color: color.$gray-medium;
+  }
+
+  p {
+    @include type.text-16-medium;
+
+    flex-shrink: 0;
+  }
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+}
+
+.social-button {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.signup-guide {
+  @include type.text-14-regular;
+
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  color: color.$gray-medium-3;
+
+  a {
+    color: color.$fda-orange;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1024px) {
+  .login-content {
+    padding: 48px 32px;
+  }
+
+  .brand-area {
+    margin-bottom: 80px;
+  }
+
+  .login-form {
+    width: min(534px, 100%);
+  }
+
+  .login-button {
+    width: 87px;
+  }
+
+  .social-button {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-content {
+    padding: 40px 20px;
+  }
+
+  .brand-area {
+    margin-bottom: 68px;
+  }
+
+  .brand-logo {
+    width: 212px;
+    height: 91px;
+  }
+
+  .brand-description {
+    @include type.text-16-semibold;
+
+    margin-top: 10px;
+    font-weight: 700;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: min(440px, 100%);
+  }
+
+  .credential-row {
+    display: contents;
+  }
+
+  .input-section {
+    order: 1;
+  }
+
+  .session-guide {
+    order: 2;
+  }
+
+  .login-button {
+    order: 3;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 16px;
+  }
+
+  .form-error {
+    order: 4;
+  }
+
+  .social-divider {
+    order: 5;
+  }
+
+  .social-buttons {
+    order: 6;
+  }
+
+  .signup-guide {
+    order: 7;
+  }
+
+  .social-button {
+    width: 48px;
+    height: 48px;
+  }
+}

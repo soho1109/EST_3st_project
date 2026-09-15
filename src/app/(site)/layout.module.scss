@@ -1,0 +1,26 @@
+.site-layout {
+  display: flex;
+  min-height: 100vh;
+
+  > :first-child {
+    flex-shrink: 0;
+  }
+
+  .site-content {
+    min-width: 0;
+    flex: 1;
+    container-name: site-content;
+    container-type: inline-size;
+    overflow-x: clip;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-layout {
+    display: block;
+
+    .site-content {
+      padding-top: 60px;
+    }
+  }
+}

@@ -1,0 +1,184 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as type;
+
+@keyframes mascot-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+.complete-page {
+  min-height: 100vh;
+  padding: 48px 32px;
+  box-sizing: border-box;
+  background-color: color.$white-2;
+  color: color.$black;
+}
+
+.complete-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(980px, 100%);
+  min-height: calc(100vh - 96px);
+  margin: 0 auto;
+
+  h1 {
+    @include type.text-48-bold;
+
+    margin-bottom: 24px;
+    text-align: center;
+  }
+}
+
+.mascot-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 385px;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(560px, 100%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at center,
+      rgba(173, 207, 255, 0.72) 0%,
+      rgba(210, 228, 255, 0.48) 42%,
+      rgba(251, 250, 249, 0) 72%
+    );
+    content: "";
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.mascot-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 407px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  animation: mascot-float 2.8s ease-in-out infinite;
+}
+
+.complete-message {
+  @include type.text-20-semibold;
+
+  margin-top: 12px;
+  line-height: 1.45;
+  text-align: center;
+
+  span {
+    display: block;
+  }
+}
+
+.login-link {
+  @include type.text-20-semibold;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(647px, 100%);
+  min-height: 56px;
+  margin-top: 32px;
+  border-radius: 50px;
+  background-color: color.$fda-yellow;
+  color: color.$black;
+  text-decoration: none;
+
+  // 키보드 사용자가 현재 선택된 이동 요소를 시각적으로 구분할 수 있게 합니다.
+  &:focus-visible {
+    outline: 3px solid color.$fda-navy;
+    outline-offset: 4px;
+  }
+}
+
+// 모션 감소를 요청한 사용자는 반복 이동 없이 기본 위치의 이미지를 확인합니다.
+@media (prefers-reduced-motion: reduce) {
+  .mascot-image {
+    animation: none;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .complete-page {
+    padding: 48px 32px;
+  }
+
+  .complete-content {
+    width: min(715px, 100%);
+
+    h1 {
+      @include type.text-36-bold;
+
+      margin-bottom: 28px;
+    }
+  }
+
+  .mascot-image {
+    width: 357px;
+  }
+
+  .login-link {
+    width: min(534px, 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .complete-page {
+    padding: 48px 20px 64px;
+  }
+
+  .complete-content {
+    width: 100%;
+    min-height: calc(100vh - 112px);
+
+    h1 {
+      @include type.text-24-semibold;
+
+      margin-bottom: 28px;
+    }
+  }
+
+  .mascot-stage {
+    min-height: 260px;
+
+    &::before {
+      width: min(340px, 100%);
+    }
+  }
+
+  .mascot-image {
+    width: 215px;
+  }
+
+  .complete-message {
+    @include type.text-16-semibold;
+
+    margin-top: 20px;
+  }
+
+  .login-link {
+    @include type.text-16-semibold;
+
+    width: 100%;
+    min-height: 48px;
+    margin-top: 28px;
+  }
+}

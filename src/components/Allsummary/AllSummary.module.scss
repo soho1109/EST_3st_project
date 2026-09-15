@@ -1,0 +1,184 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.summary-page {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  padding: 0 48px;
+
+  background: color.$white-2;
+  box-sizing: border-box;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  width: 100%;
+  max-width: 1320px;
+
+  margin: 0 auto;
+  padding: 96px 0;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+}
+
+.summary-title {
+  @include typography.text-36-bold;
+  color: color.$black;
+  white-space: nowrap;
+}
+
+.bookmark-btn {
+  display: none;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+
+  width: 292px;
+  height: 40px;
+  padding: 0 24px;
+
+  flex-shrink: 0;
+  background: color.$white;
+  border-radius: 50px;
+
+  input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+
+  .search-icon {
+    color: color.$gray-medium-3;
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 10px rgba(110, 110, 110, 0.6);
+  }
+}
+
+.summary-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 312px);
+  gap: 32px 24px;
+
+  width: 100%;
+  min-width: 0;
+  justify-content: start;
+}
+
+.scroll-sentinel {
+  width: 100%;
+  height: 1px;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .summary-page {
+    padding: 0 32px;
+  }
+
+  .summary-container {
+    width: 100%;
+    max-width: 648px;
+    margin: 0 auto;
+    padding: 64px 0;
+  }
+
+  .summary-header {
+    padding: 0;
+  }
+
+  .summary-content {
+    grid-template-columns: repeat(2, 312px);
+    gap: 32px 24px;
+    justify-content: start;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .summary-page {
+    padding: 0 20px;
+  }
+
+  .summary-container {
+    gap: 32px;
+    padding: 48px 0;
+  }
+
+  .summary-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+
+    padding: 0;
+  }
+
+  .summary-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 45px;
+  }
+
+  .summary-title {
+    @include typography.text-24-semibold;
+    color: color.$black;
+  }
+
+  .search-box {
+    align-self: flex-end;
+
+    width: 212px;
+
+    input {
+      min-width: 0;
+    }
+  }
+
+  .summary-content {
+    width: 100%;
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+
+    > article {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  .bookmark-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .bookmark-icon {
+    color: color.$gray-light-3;
+
+    &.is-active {
+      color: color.$fda-navy;
+    }
+  }
+}

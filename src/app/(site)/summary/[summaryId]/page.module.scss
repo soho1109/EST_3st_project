@@ -1,0 +1,69 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.notes-section {
+  margin-top: 24px;
+  border-top: 1px solid color.$gray-light;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.create-button,
+.delete-button {
+  @include typography.text-20-semibold;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  color: color.$fda-navy;
+  text-decoration: none;
+  border: 0;
+  border-radius: 100px;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.more-link {
+  @include typography.text-16-semibold;
+
+  color: color.$gray-medium-2;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid color.$fda-orange;
+    outline-offset: 4px;
+  }
+}
+
+.create-button {
+  background: color.$fda-yellow;
+}
+
+.delete-button {
+  color: color.$white;
+  background: red
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 20px;
+
+  h2 {
+    @include typography.text-36-bold;
+
+    margin: 0;
+    line-height: 1;
+  }
+}

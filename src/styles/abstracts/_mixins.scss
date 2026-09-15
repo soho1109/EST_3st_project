@@ -1,0 +1,32 @@
+@use "./variables" as var;
+
+@mixin font($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+@mixin input-base {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 1px solid #acacac;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(110, 110, 110, 0.3);
+  box-sizing: border-box;
+}
+
+@mixin button-base($background-color, $width) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $width;
+  border: 0;
+  border-radius: 10px;
+  background-color: $background-color;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}

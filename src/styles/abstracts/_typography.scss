@@ -1,0 +1,85 @@
+// 사용법
+
+@use "./variables" as var;
+@use "./mixins" as mixin;
+
+// 48px
+@mixin text-48-bold {
+  @include mixin.font(var.$font-size-48, var.$font-weight-bold);
+}
+
+// 36px
+@mixin text-36-bold {
+  @include mixin.font(var.$font-size-36, var.$font-weight-bold);
+}
+
+// 24px
+@mixin text-24-semibold {
+  @include mixin.font(var.$font-size-24, var.$font-weight-semibold);
+}
+
+@mixin text-24-medium {
+  @include mixin.font(var.$font-size-24, var.$font-weight-medium);
+}
+
+// 20px
+@mixin text-20-bold {
+  @include mixin.font(var.$font-size-20, var.$font-weight-bold);
+}
+
+@mixin text-20-semibold {
+  @include mixin.font(var.$font-size-20, var.$font-weight-semibold);
+}
+// 디자인 확장을 고려해 임시 추가
+// 사용하지 않으면 추후 제거
+@mixin text-20-medium {
+  @include mixin.font(var.$font-size-20, var.$font-weight-medium);
+}
+// 디자인 확장을 고려해 임시 추가
+// 사용하지 않으면 추후 제거
+@mixin text-20-regular {
+  @include mixin.font(var.$font-size-20, var.$font-weight-regular);
+}
+
+// 18px
+
+// 디자인 확장을 고려해 임시 추가
+// 사용하지 않으면 추후 제거
+@mixin text-18-semibold {
+  @include mixin.font(var.$font-size-18, var.$font-weight-semibold);
+}
+
+@mixin text-18-medium {
+  @include mixin.font(var.$font-size-18, var.$font-weight-medium);
+}
+// 디자인 확장을 고려해 임시 추가
+// 사용하지 않으면 추후 제거
+@mixin text-18-regular {
+  @include mixin.font(var.$font-size-18, var.$font-weight-regular);
+}
+
+// 16px
+@mixin text-16-semibold {
+  @include mixin.font(var.$font-size-16, var.$font-weight-semibold);
+}
+
+@mixin text-16-medium {
+  @include mixin.font(var.$font-size-16, var.$font-weight-medium);
+}
+
+@mixin text-16-regular {
+  @include mixin.font(var.$font-size-16, var.$font-weight-regular);
+}
+
+// 14px
+@mixin text-14-semibold {
+  @include mixin.font(var.$font-size-14, var.$font-weight-semibold);
+}
+
+@mixin text-14-medium {
+  @include mixin.font(var.$font-size-14, var.$font-weight-medium);
+}
+
+@mixin text-14-regular {
+  @include mixin.font(var.$font-size-14, var.$font-weight-regular);
+}

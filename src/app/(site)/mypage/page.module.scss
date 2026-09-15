@@ -1,0 +1,464 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/variables" as var;
+
+.mypage {
+  min-height: 100vh;
+  padding: 96px 48px;
+  background-color: color.$white-2;
+}
+
+.container {
+  display: flex;
+  max-width: 1320px;
+  flex-direction: column;
+  gap: 72px;
+  margin: 0 auto;
+
+  > h1 {
+    color: color.$black;
+    font-size: var.$font-size-36;
+    font-weight: var.$font-weight-bold;
+  }
+}
+
+.profile-section,
+.learning-note-section,
+.summary-section {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+
+  h2 {
+    color: color.$black;
+    font-size: var.$font-size-24;
+    font-weight: var.$font-weight-semibold;
+  }
+}
+
+.profile-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 15px;
+
+  // 프로필 이미지 Storage 연동: 이미지 위에 카메라 선택 영역 표시.
+  .profile-image {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: color.$card-color;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-image-selector {
+      display: flex;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      color: color.$white-2;
+      background-color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+
+      &:focus-within {
+        outline: 2px solid color.$fda-orange;
+        outline-offset: -2px;
+      }
+
+      span:first-child {
+        font-size: 32px;
+      }
+
+      input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: flex-start;
+    min-width: 0;
+    flex: 1;
+
+    .profile-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: color.$gray-medium-3;
+      font-size: var.$font-size-18;
+
+      .nickname {
+        color: color.$black;
+        font-size: var.$font-size-24;
+        font-weight: var.$font-weight-semibold;
+      }
+
+      .introduction {
+        color: color.$black;
+      }
+    }
+
+    .profile-form {
+      display: flex;
+      max-width: 600px;
+      flex-direction: column;
+        gap: 12px;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        color: color.$black;
+        font-size: var.$font-size-16;
+        font-weight: var.$font-weight-medium;
+
+        span {
+          width: 72px;
+          flex-shrink: 0;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px 16px;
+          border: 1px solid color.$gray-light;
+          border-radius: 50px;
+
+          &:focus {
+            outline: 1px solid color.$fda-orange;
+            outline-offset: -1px;
+          }
+        }
+      }
+
+      .nickname-error {
+        margin-top: -4px;
+        color: #d64545;
+        font-size: 12px;
+      }
+    }
+  }
+
+  // 프로필 이미지 Storage 연동: 저장 중 완료 버튼 비활성 표시.
+  .profile-edit-button {
+    width: 150px;
+    height: 50px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 50px;
+    color: color.$white-2;
+    background-color: color.$fda-navy;
+    font-size: var.$font-size-20;
+    font-weight: var.$font-weight-semibold;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+}
+
+// 프로필 이미지 Storage 연동: 파일 선택 설명은 화면에서 숨기고 스크린 리더에 전달.
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .more-link {
+    display: flex;
+    align-items: center;
+    color: color.$gray-medium-3;
+    font-size: var.$font-size-14;
+    cursor: pointer;
+    text-decoration: none;
+
+    .more-icon {
+      width: 14px;
+      height: 14px;
+      font-size: 14px;
+      font-variation-settings: "wght" 300;
+    }
+  }
+}
+
+.learning-note-table {
+  overflow: hidden;
+  border: 1px solid color.$gray-light;
+  border-radius: 15px;
+  background-color: color.$white;
+
+  .table-header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid color.$gray-light;
+    color: color.$gray-medium-3;
+    font-size: var.$font-size-14;
+    font-weight: var.$font-weight-medium;
+
+    .table-leading {
+      display: flex;
+      gap: 48px;
+    }
+
+    .table-topic {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    > span:last-child {
+      margin-left: auto;
+      width: 153px;
+      text-align: left;
+    }
+  }
+
+  .empty-message {
+    padding: 48px 24px;
+    color: color.$gray-medium-3;
+    font-size: var.$font-size-16;
+    text-align: center;
+  }
+}
+
+.summary-list {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  gap: 24px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  user-select: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  > article {
+    width: 312px;
+    flex: 0 0 312px;
+  }
+
+  // 키보드 사용자를 위한 가로 스크롤 영역 포커스 표시.
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid color.$fda-orange;
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .mypage {
+    padding: 72px 32px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mypage {
+    padding: 96px 32px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 838px;
+    gap: 96px;
+  }
+
+  .profile-content {
+    gap: 24px;
+    padding: 0;
+  }
+
+  .learning-note-section {
+    gap: 32px;
+
+    .more-link {
+      display: none;
+    }
+  }
+
+  .learning-note-table {
+    border-radius: 8px;
+  }
+
+  .summary-section {
+    gap: 24px;
+  }
+
+  .section-heading {
+    .more-link {
+      font-size: var.$font-size-18;
+
+      .more-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mypage {
+    padding: 48px 20px;
+  }
+
+  .profile-content {
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .profile-details {
+      width: calc(100% - 144px);
+      flex: auto;
+    }
+  }
+
+  .learning-note-table {
+    overflow-x: auto;
+
+    .table-header {
+      width: 850px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .mypage {
+    padding: 24px 20px 64px;
+  }
+
+  .container {
+    gap: 48px;
+  }
+
+  .profile-section,
+  .learning-note-section,
+  .summary-section {
+    gap: 24px;
+
+    h2 {
+      font-size: var.$font-size-24;
+    }
+  }
+
+  .profile-content {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+    }
+
+    .profile-details {
+      width: auto;
+      min-width: 0;
+      flex: 1;
+      gap: 24px;
+
+      .profile-text {
+        font-size: var.$font-size-14;
+
+        .nickname {
+          font-size: var.$font-size-24;
+        }
+      }
+
+      .profile-form {
+        width: 100%;
+        max-width: none;
+        gap: 12px;
+
+        label input {
+          height: 40px;
+        }
+      }
+    }
+
+    .profile-edit-button {
+      width: 120px;
+      height: 40px;
+      font-size: var.$font-size-14;
+    }
+  }
+
+  .section-heading {
+    .more-link {
+      font-size: 12px;
+
+      .more-icon {
+        width: 12px;
+        height: 12px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .learning-note-table {
+    overflow: hidden;
+    border-radius: 8px;
+
+    .table-header {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 15px;
+
+      .table-leading {
+        gap: 24px;
+      }
+
+      > span:last-child {
+        width: 80px;
+        text-align: right;
+      }
+    }
+  }
+
+  .summary-list {
+    > article {
+      width: 325px;
+      flex-basis: 325px;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.note-form-section {
+  padding-top: 24px;
+}
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-field {
+  display: flex;
+  align-items: center;
+  height: 70px;
+
+  input {
+    @include typography.text-36-bold;
+
+    width: 100%;
+    padding: 0;
+    color: color.$black;
+    background: transparent;
+    border: 0;
+    outline: 0;
+
+    &::placeholder {
+      color: color.$gray-light-3;
+    }
+  }
+}
+
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background: color.$fda-navy;
+}
+
+.body-fields {
+  display: flex;
+  min-height: 490px;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 10px;
+}
+
+.body-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    @include typography.text-20-semibold;
+
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      width: 5px;
+      height: 5px;
+      background: color.$black;
+      border-radius: 50%;
+      content: "";
+      transform: translateY(-50%);
+    }
+  }
+
+  textarea {
+    @include typography.text-14-regular;
+
+    width: calc(100% - 40px);
+    min-height: 48px;
+    margin-left: 40px;
+    padding: 0;
+    resize: vertical;
+    color: color.$black;
+    background: transparent;
+    border: 0;
+    outline: 0;
+
+    &::placeholder {
+      color: color.$gray-light-3;
+    }
+
+    &:focus-visible {
+      outline: 2px solid color.$fda-orange;
+      outline-offset: 4px;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 0;
+
+  button {
+    @include typography.text-20-semibold;
+
+    width: 150px;
+    height: 50px;
+    color: color.$fda-navy;
+    background: color.$fda-yellow;
+    border: 0;
+    border-radius: 100px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

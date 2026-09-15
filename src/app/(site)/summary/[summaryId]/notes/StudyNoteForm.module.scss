@@ -1,0 +1,157 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+
+  input {
+    @include typography.text-36-bold;
+
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 64px;
+    padding: 10px 16px;
+    color: color.$black;
+    background: rgba(color.$black, 0.02);
+    border: 0;
+    border-radius: 10px;
+    outline: 0;
+
+    &::placeholder {
+      color: color.$gray-light-3;
+    }
+
+    &:focus-visible {
+      outline: 2px solid color.$fda-orange;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.accent-line {
+  width: 60px;
+  height: 4px;
+  margin-top: 16px;
+  background: color.$fda-navy;
+}
+
+.body-fields {
+  display: flex;
+  min-height: 490px;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 10px;
+}
+
+.body-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    @include typography.text-20-semibold;
+
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      width: 5px;
+      height: 5px;
+      background: color.$black;
+      border-radius: 50%;
+      content: "";
+      transform: translateY(-50%);
+    }
+  }
+
+  textarea {
+    @include typography.text-14-regular;
+
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    min-height: 96px;
+    margin-left: 40px;
+    padding: 14px 16px;
+    resize: vertical;
+    color: color.$black;
+    background: rgba(color.$black, 0.02);
+    border: 0;
+    border-radius: 10px;
+    outline: 0;
+
+    &::placeholder {
+      color: color.$gray-light-3;
+    }
+
+    &:focus-visible {
+      outline: 2px solid color.$fda-orange;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.field-error,
+.form-error {
+  @include typography.text-14-regular;
+
+  margin: 0;
+  color: color.$fda-orange;
+}
+
+.field-error {
+  margin-left: 40px;
+}
+
+.form-error {
+  padding: 0 10px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 0;
+
+  button {
+    @include typography.text-20-semibold;
+
+    width: 150px;
+    height: 50px;
+    color: color.$fda-navy;
+    background: color.$fda-yellow;
+    border: 0;
+    border-radius: 100px;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: wait;
+      opacity: 0.6;
+    }
+
+    &:focus-visible {
+      outline: 2px solid color.$fda-orange;
+      outline-offset: 3px;
+    }
+  }
+}
+
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

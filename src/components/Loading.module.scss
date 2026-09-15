@@ -1,0 +1,87 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typo;
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  // 기존 페이지와 공통 모달보다 앞에 표시합니다.
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(color.$gray-light-3, 0.9);
+  pointer-events: auto;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.spinner-wrapper {
+  position: relative;
+  width: 112px;
+  height: 112px;
+}
+
+.spinner-ring {
+  position: absolute;
+  inset: 0;
+}
+
+.spinner-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 18px;
+  border-radius: 999px;
+  background: color.$white;
+  opacity: 0.25;
+  animation: spinner-fade 3s ease-in-out infinite;
+}
+
+// 생성된 막대 12개를 30도 간격으로 배치하고 서로 다른 애니메이션 시작 시점을 지정합니다.
+@for $index from 1 through 12 {
+  .spinner-bar:nth-child(#{$index}) {
+    transform: translate(-50%, -50%) rotate(($index - 1) * 30deg) translateY(-45px);
+    // 음수 지연으로 첫 화면부터 애니메이션이 이미 진행 중인 것처럼 보이며 계산 순서가 진행 방향을 정합니다.
+    animation-delay: -(12 - $index) * 0.25s;
+  }
+}
+
+.profile-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+}
+
+.loading-message {
+  @include typo.text-18-semibold;
+
+  color: color.$fda-navy;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@keyframes spinner-fade {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  10% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner-bar {
+    animation-duration: 6s;
+  }
+}

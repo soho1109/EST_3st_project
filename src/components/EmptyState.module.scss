@@ -1,0 +1,32 @@
+@use "../styles/abstracts/colors" as color;
+@use "../styles/abstracts/typography" as typography;
+
+.empty-state {
+  display: flex;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 280px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.empty-image {
+  position: relative;
+  width: 171px;
+  height: 184px;
+  overflow: hidden;
+
+  img {
+    aspect-ratio: 1/1;
+    object-fit: cover
+  }
+}
+
+.empty-message {
+  @include typography.text-24-semibold;
+
+  margin: 0;
+  color: color.$gray-medium-3;
+}

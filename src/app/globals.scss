@@ -1,0 +1,14 @@
+// 전역으로 들어가는 스타일
+@use "@/styles/base/reset";
+
+@use "@/styles/abstracts/variables" as var;
+@use "@/styles/abstracts/colors" as color;
+
+html {
+  font-size: var.$font-size-16;
+}
+
+body {
+  color: color.$black;
+  letter-spacing: var.$letter-spacing-default;
+}

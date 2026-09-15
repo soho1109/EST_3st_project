@@ -1,0 +1,116 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.note-detail {
+  padding-top: 24px;
+}
+
+
+
+.note-heading {
+  display: flex;
+  align-items: center;
+  height: 70px;
+
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background: color.$fda-navy;
+}
+
+.note-content {
+  display: flex;
+  min-height: 490px;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 10px;
+}
+
+.content-section {
+  h3 {
+    @include typography.text-20-semibold;
+
+    position: relative;
+    margin: 0;
+    padding-left: 20px;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      width: 5px;
+      height: 5px;
+      background: color.$black;
+      border-radius: 50%;
+      content: "";
+      transform: translateY(-50%);
+    }
+  }
+
+  p {
+    @include typography.text-14-regular;
+
+    min-height: 20px;
+    margin: 10px 0 0 40px;
+    white-space: pre-wrap;
+  }
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 24px 0;
+
+  button {
+    @include typography.text-20-semibold;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    color: color.$fda-navy;
+    border: 0;
+    border-radius: 100px;
+    text-decoration: none;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.edit-button {
+  color: color.$fda-navy;
+  background: color.$fda-yellow;
+}
+
+.note-actions {
+  a {
+    @include typography.text-20-semibold;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    color: color.$fda-navy;
+    background: color.$fda-yellow;
+    border-radius: 100px;
+    text-decoration: none;
+  }
+}
+
+.note-actions .delete-button {
+  color: color.$white;
+  background: red
+}

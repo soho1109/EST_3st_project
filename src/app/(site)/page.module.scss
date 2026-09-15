@@ -1,0 +1,522 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/variables" as var;
+
+.main-page {
+  min-height: 100vh;
+  padding: 96px 48px;
+  background-color: color.$white-2;
+}
+
+.container {
+  display: flex;
+  max-width: 1320px;
+  flex-direction: column;
+  gap: 72px;
+  margin: 0 auto;
+}
+
+.intro-section {
+  display: flex;
+  align-items: center;
+  gap: 63px;
+  padding: 0 112px 0 114px;
+
+  .mascot-image {
+    width: 357px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .intro-content {
+    display: flex;
+    width: 760px;
+    min-width: 0;
+    flex-direction: column;
+    gap: 40px;
+
+    .intro-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .greeting {
+        color: color.$black;
+        font-size: var.$font-size-24;
+        font-weight: var.$font-weight-semibold;
+
+        span {
+          color: color.$fda-orange;
+        }
+      }
+
+      h1 {
+        color: color.$black;
+        font-size: var.$font-size-48;
+        font-weight: var.$font-weight-bold;
+        line-height: 1.5;
+      }
+
+      .description {
+        color: color.$black;
+        font-size: var.$font-size-18;
+        font-weight: var.$font-weight-medium;
+      }
+    }
+
+    .summary-form {
+      display: flex;
+      width: min(100%, 673px);
+      flex-direction: column;
+      gap: 20px;
+
+      .topic-input {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        width: 100%;
+        padding: 16px 24px;
+        border-radius: 50px;
+        box-shadow: 0 0 10px rgba(color.$gray, 0.5);
+        color: color.$gray;
+        font-size: var.$font-size-18;
+        font-weight: var.$font-weight-regular;
+        transition: box-shadow 0.25s ease;
+
+        // 마우스와 키보드 사용자 모두 입력 위치를 명확히 확인할 수 있도록 래퍼에 포커스를 표시합니다.
+        &:focus-within {
+          box-shadow:
+            0 0 8px rgba(color.$fda-navy, 0.3),
+            0 0 18px rgba(color.$fda-navy, 0.24);
+        }
+
+        input {
+          min-width: 0;
+          flex: 1;
+          border: 0;
+          outline: 0;
+          color: color.$black;
+          background-color: transparent;
+          font: inherit;
+
+          &::placeholder {
+            color: color.$gray;
+            opacity: 1;
+          }
+        }
+
+        .submit-button {
+          display: flex;
+          margin-left: auto;
+          padding: 0;
+          border: 0;
+          color: inherit;
+          background-color: transparent;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .submit-icon {
+          display: block;
+        }
+
+        :global(.material-symbols-outlined) {
+          width: 32px;
+          height: 32px;
+          flex-shrink: 0;
+          font-size: 32px;
+        }
+      }
+
+      .form-bottom {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+
+        .notice {
+          color: color.$gray-medium-2;
+          font-size: 12px;
+          line-height: 1.5;
+        }
+
+        .password-option {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: 172px;
+          min-height: 48px;
+          flex-shrink: 0;
+          color: color.$gray-medium;
+          font-size: var.$font-size-18;
+          font-weight: var.$font-weight-medium;
+
+          .password-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+          }
+
+          .checkbox-input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            white-space: nowrap;
+
+            &:focus-visible + .checkbox-icon {
+              border-radius: 2px;
+              outline: 2px solid color.$fda-orange;
+              outline-offset: 2px;
+            }
+          }
+
+          .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            white-space: nowrap;
+          }
+
+          .checkbox-icon {
+            font-size: 24px;
+          }
+
+          .password-field {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+          }
+
+          .password-input {
+            width: 140px;
+            border: 0;
+            border-bottom: 1px solid color.$gray-medium;
+            color: color.$gray-medium;
+            background-color: transparent;
+            font: inherit;
+
+            &::placeholder {
+              color: color.$gray-medium;
+              opacity: 1;
+            }
+
+            &:focus {
+              border-bottom-color: color.$fda-orange;
+              outline: 0;
+            }
+          }
+
+          .password-error {
+            color: color.$fda-orange;
+            font-size: 12px;
+            font-weight: var.$font-weight-medium;
+            line-height: 1.2;
+
+            &.is-hidden {
+              visibility: hidden;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  align-items: center;
+
+  .wide-parent {
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  :global(.banner) {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+  }
+
+  .quick-menu {
+    display: flex;
+    gap: 80px;
+    justify-content: center;
+    width: 100%;
+
+    .quick-menu-card {
+      display: flex;
+      width: 312px;
+      height: 120px;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 32px;
+      border: 1px solid color.$fda-orange;
+      border-radius: 15px;
+      color: color.$fda-navy;
+      background-color: transparent;
+      font-family: inherit;
+      font-size: var.$font-size-24;
+      font-weight: var.$font-weight-semibold;
+      text-align: left;
+      text-decoration: none;
+      transition: box-shadow 0.25s ease;
+
+      &:hover,
+      &:focus-visible {
+        background-color: color.$white;
+        box-shadow:
+          0 0 8px rgba(color.$fda-orange, 0.3),
+          0 0 18px rgba(color.$fda-orange, 0.24);
+      }
+
+      &:focus-visible {
+        outline: 2px solid color.$fda-orange;
+        outline-offset: 3px;
+      }
+
+      &[type="button"] {
+        cursor: pointer;
+      }
+
+      :global(.material-symbols-outlined) {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        color: color.$fda-orange;
+        font-size: 48px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .main-page {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .intro-section {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .content-section {
+    .quick-menu {
+      gap: 24px;
+    }
+  }
+}
+
+@container site-content (max-width: 1024px) {
+  .main-page {
+    padding: 64px 32px;
+  }
+
+  .intro-section {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+
+    .mascot-image {
+      width: min(100%, 280px);
+    }
+
+    .intro-content {
+      width: min(100%, 760px);
+
+      .summary-form {
+        width: 100%;
+      }
+    }
+  }
+
+  .content-section {
+    :global(.banner) {
+      width: 100%;
+    }
+
+    .quick-menu {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+
+      .quick-menu-card {
+        width: 100%;
+        height: 96px;
+        min-width: 0;
+        padding: 16px;
+        font-size: var.$font-size-20;
+      }
+    }
+  }
+}
+
+@container site-content (max-width: 767px) {
+  .main-page {
+    padding: 48px 20px;
+  }
+
+  .intro-section {
+    .mascot-image {
+      width: min(100%, 220px);
+    }
+
+    .intro-content {
+      .intro-copy {
+        h1 {
+          font-size: var.$font-size-36;
+          line-height: 1.3;
+        }
+      }
+
+      .summary-form .form-bottom {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@container site-content (max-width: 480px) {
+  .main-page {
+    padding: 30px 20px 96px;
+  }
+
+  .container {
+    gap: 70px;
+  }
+
+  .intro-section {
+    display: grid;
+    grid-template-columns: 142px minmax(0, 1fr);
+    column-gap: 10px;
+    row-gap: 46px;
+    align-items: center;
+
+    .mascot-image {
+      grid-column: 1;
+      grid-row: 1;
+      width: 142px;
+    }
+
+    .intro-content {
+      display: contents;
+
+      .intro-copy {
+        grid-column: 2;
+        grid-row: 1;
+        gap: 12px;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .greeting {
+          font-size: var.$font-size-18;
+          white-space: nowrap;
+        }
+
+        h1 {
+          font-size: var.$font-size-24;
+          line-height: 1.3;
+          word-break: keep-all;
+          white-space: normal;
+        }
+
+        .description {
+          font-size: 13px;
+          font-weight: var.$font-weight-regular;
+        }
+      }
+
+      .summary-form {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        gap: 16px;
+
+        .topic-input {
+          height: 56px;
+          padding: 16px 24px;
+          background-color: color.$white;
+          font-size: 13px;
+
+          :global(.material-symbols-outlined) {
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+          }
+        }
+
+        .form-bottom {
+          gap: 16px;
+          align-items: stretch;
+
+          .notice {
+            font-size: 12px;
+            line-height: 1.3;
+          }
+
+          .password-option {
+            order: -1;
+            align-self: flex-end;
+            font-size: 12px;
+
+            .checkbox-icon {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .content-section {
+    gap: 96px;
+
+    :global(.banner) {
+      border-radius: 8px;
+    }
+
+    .quick-menu {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 48px;
+      overflow-x: visible;
+
+      .quick-menu-card {
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        font-size: var.$font-size-16;
+        text-align: center;
+
+        &:hover,
+        &:focus-visible {
+          background-color: transparent;
+          box-shadow: none;
+        }
+
+        :global(.material-symbols-outlined) {
+          width: 56px;
+          height: 56px;
+          font-size: 56px;
+        }
+      }
+    }
+  }
+}

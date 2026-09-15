@@ -1,0 +1,165 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(color.$black, 0.5);
+}
+
+.modal-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: min(896px, 100%);
+  min-height: 600px;
+
+  background: color.$white;
+  border-radius: 6px;
+}
+
+.close-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  color: color.$black;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background: color.$white-2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid color.$fda-orange;
+    outline-offset: 2px;
+  }
+}
+
+.mascot-wrapper {
+  position: relative;
+
+  width: 348px;
+  height: 329px;
+}
+
+.mascot-image {
+  object-fit: contain;
+}
+
+.modal-message {
+  @include typography.text-20-semibold;
+
+  margin: 10px 0 0;
+  color: color.$black;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+
+  width: 100%;
+  margin-top: 18px;
+}
+
+.primary-button,
+.secondary-button,
+.link-button,
+.secondary-link {
+  @include typography.text-14-semibold;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 92px;
+  height: 40px;
+  padding: 0 20px;
+
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid color.$fda-navy;
+    outline-offset: 2px;
+  }
+}
+
+.primary-button,
+.link-button {
+  color: color.$white;
+  background: color.$fda-orange;
+  border: 1px solid color.$fda-orange;
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+}
+
+.secondary-button,
+.secondary-link {
+  color: color.$fda-orange;
+  background: color.$white;
+  border: 1px solid color.$fda-orange;
+
+  &:hover {
+    background: color.$white-2;
+  }
+}
+
+// 삭제와 취소를 같은 크기의 둥근 직사각형 버튼으로 구분한다.
+.modal-container[data-mode="confirmDelete"] {
+  .button-group {
+    gap: 16px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    box-sizing: border-box;
+    width: 100px;
+    min-width: 100px;
+    height: 44px;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+
+  .primary-button {
+    color: color.$white;
+    background: red;
+    border-color: red;
+  }
+
+  .secondary-button {
+    color: color.$fda-orange;
+    background: color.$white;
+    border: 1px solid color.$fda-orange;
+    visibility: visible;
+    opacity: 1;
+  }
+}

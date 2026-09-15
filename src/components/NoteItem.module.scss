@@ -1,0 +1,65 @@
+@use "styles/abstracts/colors" as color;
+@use "styles/abstracts/typography" as typography;
+
+.note-item {
+  display: grid;
+  grid-template-columns: 120px 180px minmax(0, 1fr) 160px;
+  align-items: center;
+  min-height: 60px;
+  padding: 8px 20px;
+  color: color.$black;
+  border-top: 1px solid color.$gray-light;
+  text-decoration: none;
+
+  &:hover {
+    background: color.$white-2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid color.$fda-orange;
+    outline-offset: -2px;
+  }
+}
+
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-image {
+  position: relative;
+  width: 40px;
+  height: 43px;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.status-label,
+.author-cell {
+  @include typography.text-16-semibold;
+
+  color: color.$gray-medium-2;
+}
+
+.author-cell,
+.topic-cell,
+.date-cell {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topic-cell,
+.date-cell {
+  @include typography.text-18-semibold;
+}
+
+.date-cell {
+  color: color.$gray-medium-2;
+}
